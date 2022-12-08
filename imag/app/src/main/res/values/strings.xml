@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">StagedView</string>
+    <string name="next">Next</string>
+    <string name="save">Save Draw</string>
+</resources>
