@@ -109,17 +109,21 @@ public class MainActivity extends AppCompatActivity {
         counter= new Random().nextInt((max - min) ) + min;
 
         //To print the random number of the counter
-        Toast.makeText(getApplicationContext(),"El numero es: " + imagess_name.get(counter) ,Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(),"El numero es: " + imagess_name.get(counter) ,Toast.LENGTH_SHORT).show();
 
         //To change the image to the image with the number of counter
         imageView.setImageResource(imagess.get(counter));
-
-        //save_check=false;
 
         //To clear the whiteboard
         canvas.clearCanvas();
 
     }
+
+    public void Reset(View v){//Method to reset the canvas
+        canvas.clearCanvas();
+    }
+
+
 
     //The buttons fuctions to set the 'pencil' color
     public void Black_set(View v){
@@ -154,6 +158,9 @@ public class MainActivity extends AppCompatActivity {
     }
     public void Light_Brown_set(View v){
         canvas.setColor(WhiteBoard.DrawingColors.LIGHT_BROWN.getColorValue());
+    }
+    public void White_set(View v){
+        canvas.setColor(WhiteBoard.DrawingColors.WHITE.getColorValue());
     }
 }
 

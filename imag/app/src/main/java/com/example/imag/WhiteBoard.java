@@ -9,9 +9,8 @@ import android.graphics.Path;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Switch;
+import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 
 import java.util.AbstractMap;
 import java.util.Map;
@@ -19,22 +18,12 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class WhiteBoard extends View {
 
-    Paint paint;
-    Path path;
     private Bitmap bitmap;
     private Canvas canvas;
 
     public WhiteBoard(Context context,AttributeSet attrs) {//Create the whiteboard and set the basic color
         super(context, attrs);
         init();
-        /*
-        paint=new Paint();
-        path=new Path();
-        paint.setAntiAlias(true);
-        paint.setColor(Color.BLACK);
-        paint.setStrokeJoin(Paint.Join.ROUND);
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(5f);*/
     }
 
     private ConcurrentLinkedQueue<Map.Entry<Path,  Paint>> mPaths = new ConcurrentLinkedQueue<Map.Entry<Path, Paint>>();
@@ -42,6 +31,8 @@ public class WhiteBoard extends View {
 
     private Path mCurrentPath = null;
     private Paint currentPaint = null;
+    private Path lastPath = null;
+    private Paint lastPaint = null;
 
     private void init(){
         mCurrentPath = new Path();
@@ -67,7 +58,6 @@ public class WhiteBoard extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        //canvas.drawPath(path,paint);
         for (Map.Entry<Path,Paint> entry : mPaths) {
             canvas.drawPath(entry.getKey(), entry.getValue());
         }
@@ -100,19 +90,33 @@ public class WhiteBoard extends View {
     }
 
     public void clearCanvas() {//To clear the canvas
+        int j=mPaths.size()-1;
+        int l=0;
         for (Map.Entry<Path,Paint> entry : mPaths) {
+            if (l==j){
+                lastPaint=entry.getValue();
+                lastPath=entry.getKey();
+            }
             entry.getKey().reset();
+            mPaths.remove(entry);
+            l++;
+
+
         }
+        mPaths.add(new AbstractMap.SimpleImmutableEntry<Path, Paint>(lastPath, lastPaint));
+        lastPath=null;
+        lastPaint=null;
         invalidate();
     }
+
+
 
 
     public enum DrawingColors{//The 'List' of colors
         BLACK(Color.parseColor("#000000")),  BLUE(Color.parseColor("#0000FF")),  RED(Color.parseColor("#FF0000")),
         YELLOW(Color.parseColor("#FFD801")), PURPLE(Color.parseColor("#800080")), GREEN(Color.parseColor("#01C501")),
         ORANGE(Color.parseColor("#FFA500")), COFEE(Color.parseColor("#D2691E")), MAGENTA(Color.parseColor("#FF00FF")),
-        LIGHT_BLUE(Color.parseColor("#14E1E1")), LIGHT_BROWN(Color.parseColor("#D6AB8B"))
-        ;
+        LIGHT_BLUE(Color.parseColor("#14E1E1")), LIGHT_BROWN(Color.parseColor("#D6AB8B")) ,WHITE(Color.parseColor("#FFFFFF"));
 
         private int colorValue;
         private DrawingColors(final int color) {
@@ -130,9 +134,17 @@ public class WhiteBoard extends View {
         currentPaint =new Paint();
         currentPaint.setAntiAlias(true);
         currentPaint.setColor(color);
-        currentPaint.setStrokeJoin(Paint.Join.ROUND);
-        currentPaint.setStyle(Paint.Style.STROKE);
-        currentPaint.setStrokeWidth(5f);
+        if (color ==-1){
+            currentPaint.setStrokeJoin(Paint.Join.ROUND);
+            currentPaint.setStyle(Paint.Style.STROKE);
+            currentPaint.setStrokeWidth(9f);
+        }
+        else{
+            currentPaint.setStrokeJoin(Paint.Join.ROUND);
+            currentPaint.setStyle(Paint.Style.STROKE);
+            currentPaint.setStrokeWidth(5f);
+        }
+
         mPaths.add(new AbstractMap.SimpleImmutableEntry<Path, Paint>(mCurrentPath, currentPaint));
 
 

@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">StagedView</string>
+    <string name="app_name">Trace Draw</string>
     <string name="next">Next</string>
-    <string name="save">Save Draw</string>
+    <string name="save">Save</string>
+    <string name="reset">Reset </string>
+    <string name="eraser">Eraser</string>
 </resources>
