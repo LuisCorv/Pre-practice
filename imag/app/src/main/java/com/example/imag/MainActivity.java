@@ -9,7 +9,9 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.util.TypedValue;
@@ -21,6 +23,10 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Random;
@@ -87,10 +93,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void Save (View v){
         //Method to save the draw
+        //♦♦♦ Confirm that the device have allowed the app to have access to the storage
         canvas.setDrawingCacheEnabled(true);
         String imgSave = MediaStore.Images.Media.insertImage(
                 getContentResolver(),canvas.getDrawingCache(), imagess_name.get(counter)+"_v"+ UUID.randomUUID().toString()+".jpg","drawing"  );
-        //El random UUID deberia de cambiarlo
         if(imgSave != null){
             Toast.makeText(getApplicationContext(),"Saved",Toast.LENGTH_SHORT).show();
         }
