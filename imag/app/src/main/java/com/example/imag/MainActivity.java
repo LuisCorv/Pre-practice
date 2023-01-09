@@ -12,6 +12,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Looper;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.util.TypedValue;
@@ -61,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         imageView.setImageResource(imagess.get(counter));
 
         canvas=(WhiteBoard) findViewById(R.id.signature_canvas);
+        change_mode(0);
 
     }
 
@@ -117,11 +120,13 @@ public class MainActivity extends AppCompatActivity {
         //To print the random number of the counter
         //Toast.makeText(getApplicationContext(),"El numero es: " + imagess_name.get(counter) ,Toast.LENGTH_SHORT).show();
 
+        change_mode(0);
         //To change the image to the image with the number of counter
-        imageView.setImageResource(imagess.get(counter));
+        //imageView.setImageResource(imagess.get(counter));
 
         //To clear the whiteboard
         canvas.clearCanvas();
+
 
     }
 
@@ -129,6 +134,40 @@ public class MainActivity extends AppCompatActivity {
         canvas.clearCanvas();
     }
 
+
+    public void change_mode(int mode_change){
+        if(mode_change==1){ //Draw Mode
+            imageView.setImageResource(R.drawable.border);
+            canvas.draw_available(1);
+
+        }
+        else if(mode_change==0){ //Show Image Mode
+            imageView.setImageResource(imagess.get(counter));
+            canvas.draw_available(0);
+
+            //To make the delay between 'modes'
+            Runnable runnable= new Runnable() {
+                @Override
+                public void run() {
+                    change_mode(1);
+                }
+            };
+            Handler handler =new Handler(Looper.getMainLooper());
+            handler.postDelayed(runnable, 5000);
+        }
+        else{
+            imageView.setImageResource(imagess.get(counter));
+            canvas.draw_available(0);
+        }
+    }
+
+    public void Draw_in_canvas(View v){
+            change_mode(1);
+    }
+
+    public void Show_image(View v){
+            change_mode(2);
+    }
 
 
     //The buttons fuctions to set the 'pencil' color

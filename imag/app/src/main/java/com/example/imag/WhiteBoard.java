@@ -33,6 +33,7 @@ public class WhiteBoard extends View {
     private Paint currentPaint = null;
     private Path lastPath = null;
     private Paint lastPaint = null;
+    boolean callOnDraw=false;
 
     private void init(){
         mCurrentPath = new Path();
@@ -56,37 +57,43 @@ public class WhiteBoard extends View {
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
+    protected void onDraw(Canvas canvas) { //function of the characteristics of the line
         super.onDraw(canvas);
-        for (Map.Entry<Path,Paint> entry : mPaths) {
-            canvas.drawPath(entry.getKey(), entry.getValue());
+        if(callOnDraw){ //To check if able/ disable to draw
+            for (Map.Entry<Path,Paint> entry : mPaths) {
+                canvas.drawPath(entry.getKey(), entry.getValue());
+            }
+            //It show all the 'lines' made until de moment
         }
-        //It show all the 'lines' made until de moment
+
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        float xPos= event.getX();
-        float yPos=event.getY();
+    public boolean onTouchEvent(MotionEvent event) {    //function of the path's made by the user
 
-        switch(event.getAction()){
-            case MotionEvent.ACTION_DOWN:
-                mCurrentPath.moveTo(xPos,yPos);
-                return true;
+        if(callOnDraw){ //To check if able / disable to draw
 
-            case MotionEvent.ACTION_MOVE:
-                mCurrentPath.lineTo(xPos,yPos);
-                break;
+            float xPos= event.getX();
+            float yPos=event.getY();
 
-            case MotionEvent.ACTION_UP:
-                break;
+            switch(event.getAction()){
+                case MotionEvent.ACTION_DOWN:
+                    mCurrentPath.moveTo(xPos,yPos);
+                    return true;
 
-            default:
-                return false;
+                case MotionEvent.ACTION_MOVE:
+                    mCurrentPath.lineTo(xPos,yPos);
+                    break;
+
+                case MotionEvent.ACTION_UP:
+                    break;
+
+                default:
+                    return false;
+            }
         }
         invalidate();
         return true;
-
     }
 
     public void clearCanvas() {//To clear the canvas
@@ -107,6 +114,18 @@ public class WhiteBoard extends View {
         lastPath=null;
         lastPaint=null;
         invalidate();
+    }
+
+    public void draw_available(int mode){ //Method to make the canvas able or disable to draw in it
+
+        //1= it's able to draw ** 0 = it's not able to draw
+        if (mode==1){
+            callOnDraw=true;
+        }
+        else{
+            callOnDraw=false;
+        }
+
     }
 
 

@@ -4,8 +4,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:backgroundTint="#B39DDB"
     android:orientation="horizontal"
     tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/DrawMode_Instructions"
+        android:layout_width="105dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="10dp"
+        android:background="#FCE4EC"
+        android:text="After press you can draw in the Canvas, and the Image will be cover"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/guideline5"
+        app:layout_constraintEnd_toStartOf="@+id/guideline8"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="@+id/guideline7"
+        app:layout_constraintTop_toBottomOf="@+id/DrawMode"
+        app:layout_constraintVertical_bias="0.111" />
+
+    <Button
+        android:id="@+id/DrawMode"
+        android:layout_width="105dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="10dp"
+        android:backgroundTint="#CE93D8"
+        android:onClick="Draw_in_canvas"
+        android:text="@string/draw"
+        android:textColor="#000000"
+        android:textSize="10sp"
+        app:icon="@android:drawable/ic_menu_edit"
+        app:iconGravity="start|textStart"
+        app:iconSize="18dp"
+        app:iconTint="#039BE5"
+        app:layout_constraintBottom_toTopOf="@+id/DrawMode_Instructions"
+        app:layout_constraintEnd_toStartOf="@+id/guideline8"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="@+id/guideline7"
+        app:layout_constraintTop_toBottomOf="@+id/ShowImage_Instructions" />
 
     <TextView
         android:id="@+id/textView"
@@ -322,35 +361,35 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.54" />
+        app:layout_constraintGuide_percent="0.57" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.89056087" />
+        app:layout_constraintGuide_percent="0.92" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.93433654" />
+        app:layout_constraintGuide_percent="0.96" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.56" />
+        app:layout_constraintGuide_percent="0.59" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.87" />
+        app:layout_constraintGuide_percent="0.9" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline13"
@@ -365,5 +404,61 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.79" />
+
+    <Button
+        android:id="@+id/ShowImage"
+        android:layout_width="105dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="10dp"
+        android:backgroundTint="#FDD835"
+        android:onClick="Show_image"
+        android:text="@string/show"
+        android:textColor="#000000"
+        android:textSize="10sp"
+        app:icon="@android:drawable/ic_menu_gallery"
+        app:iconGravity="start|textStart"
+        app:iconSize="18dp"
+        app:iconTint="#039BE5"
+        app:layout_constraintBottom_toTopOf="@+id/ShowImage_Instructions"
+        app:layout_constraintEnd_toStartOf="@+id/guideline8"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="@+id/guideline7"
+        app:layout_constraintTop_toTopOf="@+id/guideline4" />
+
+    <TextView
+        android:id="@+id/ShowImage_Instructions"
+        android:layout_width="105dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="10dp"
+        android:background="#FCE4EC"
+        android:text="After pressyou can see the Image, but unable to draw. "
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/DrawMode"
+        app:layout_constraintEnd_toStartOf="@+id/guideline8"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="@+id/guideline7"
+        app:layout_constraintTop_toBottomOf="@+id/ShowImage" />
+
+    <TextView
+        android:id="@+id/Basic_Instructions"
+        android:layout_width="309dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="4dp"
+        android:background="#E3F2FD"
+        android:text=" At the beginning or after press Next, you will have 5 seconds to see the Image, then the Image will be cover and you will be able to draw your draft  of the image in the Canvas"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/guideline4"
+        app:layout_constraintEnd_toStartOf="@+id/textView4"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
