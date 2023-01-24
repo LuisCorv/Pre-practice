@@ -156,7 +156,7 @@ public class WhiteBoard extends View {
         if (color ==-1){
             currentPaint.setStrokeJoin(Paint.Join.ROUND);
             currentPaint.setStyle(Paint.Style.STROKE);
-            currentPaint.setStrokeWidth(9f);
+            currentPaint.setStrokeWidth(12f);
         }
         else{
             currentPaint.setStrokeJoin(Paint.Join.ROUND);
