@@ -1,7 +1,7 @@
 # Trace Draw 
 **Luis Corvalán**
 
-La aplicación “Trace Draw” fue desarrollada con el propósito de recolectar data sobre dibujos realizados en base a un determinado set de imágenes. Para realizar esto, se utilizó Android Studio 
+La aplicación “Trace Draw” fue desarrollada con el propósito de recolectar data sobre dibujos realizados en base a un determinado set de imágenes. Para realizar esto, se utilizó Android Studio. 
 
 ## Nivel de Usuario:
 
@@ -26,7 +26,7 @@ Si se desea modificar el set de imágenes de la aplicación, son necesario hacer
 Y la segunda es construir otro APK desde Android estudio. Para realizar esto ingresa al siguiente [link](https://qr.ae/proyrl). Este APK que generaste es el que puedes compartir para que otros prueben o actualicen “Trace Draw” a la última versión que les enviaste. Pero a las personas que se los envien deben de ser de confianza, ya que, ya que si no es un "Signed APK" esas pueden ingresar al codigo de la app.
 
 **Algunas otras cosas importantes de comentar son que:**
--	Las imágenes que se deseen utilizar en la app deben de haber tenido algún tratamiento previo, en este caso es hacer que no tenga caracteres o símbolos especiales (excepto el guion bajo), mayúsculas ni tildes o letras de otro abecedario que no sea el inglés y que no inicie con un valor numérico. Es decir, los únicos caracteres posibles de las imágenes son Alpha numéricos en minúsculas y el guion bajo, además de la extensión de la imagen [.jpg o .png] 
+-	Las imágenes que se deseen utilizar en la app deben de haber tenido algún tratamiento previo, en este caso es hacer que no tenga caracteres o símbolos especiales (excepto el guion bajo), mayúsculas ni tildes o letras de otro abecedario que no sea el inglés y que no inicie con un valor numérico. Es decir, los únicos caracteres posibles de las imágenes son Alpha numéricos en minúsculas y el guion bajo, además de la extensión de la imagen [.jpg o .png]. 
 
 <p align="center">
 <img  src="imag/Image_example.png" alt="Images Example">
